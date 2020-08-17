@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import video from './videos/video.mp4'
+import engsub from './subs/subtitles.en.vtt'
+import vietsub from './subs/subtitles.vn.vtt'
 import './App.css';
+import ReactPlayer from "react-player"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <ReactPlayer
+                controls
+                playing
+                url={video}
+                muted={true}
+                config={{
+                    file: {
+                        tracks: [
+                            {kind: 'subtitles', src: engsub, srcLang: 'english', default: true},
+                            {kind: 'subtitles', src: vietsub, srcLang: 'vietnam'},
+                        ]
+                    }
+                }}
+            />
+        </div>
+    )
 }
 
-export default App;
+export default App
